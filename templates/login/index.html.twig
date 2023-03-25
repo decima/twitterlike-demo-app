@@ -4,14 +4,21 @@
     {% if error %}
         <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
+    <a href="{{ path('app_register') }}">Register</a>
 
+    <h1>Login</h1>
     <form action="{{ path('app_login') }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+        <div class="mb-3">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
+            <label class="form-label" for="username">Username</label>
+            <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
+        </div>
+        <div class="mb-3">
 
-        <button type="submit">login</button>
+            <label class="form-label" for="password">Password</label>
+            <input class="form-control" type="password" id="password" name="_password">
+        </div>
+        <button class="btn btn-primary btn-block" type="submit">login</button>
     </form>
+
 {% endblock %}
