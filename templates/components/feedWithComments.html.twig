@@ -1,0 +1,6 @@
+<div class="mt-4">
+    {% for tweet in tweets|sort((a,b)=>b.createdAt <=>a.createdAt) %}
+        {% include 'components/cardWithComments.html.twig' with {tweet: tweet} %}
+
+    {% endfor %}
+</div>

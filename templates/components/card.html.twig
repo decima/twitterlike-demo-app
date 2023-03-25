@@ -1,0 +1,21 @@
+<div class="card mb-2">
+    <div class="card-body">
+        <h5 class="card-title"><a href="{{ path('app_user',{ username: tweet.author.username}) }}">{{ tweet.author.username }}</a></h5>
+        <h6 class="card-subtitle mb-4"><a href="{{ path('app_tweet', {'tweet':tweet.id}) }}">{{ tweet.createdAt|date }}</a></h6>
+        <p class="card-text">{{ tweet.content }}</p>
+
+    </div>
+    <div class="card-footer">
+
+    {% if tweet.children.count> 0 %}
+        {# Bad practice, parce que ça fout la merde niveau nombre de requêtes, mais la flemme de faire un truc plus funky #}
+            <a class='btn btn-link' href="{{ path('app_tweet', {'tweet':tweet.id}) }}">{{ tweet.children.count }} comment(s)</a>
+    {% endif %}
+
+        <a class='btn btn-link' onclick="document.querySelector('#replyto-{{ tweet.id }}').style.display=document.querySelector('#replyto-{{ tweet.id }}').style.display==='none'?'block':'none';">Reply</a>
+        <div style="display:none;" id="replyto-{{ tweet.id }}">
+            {{ render(path('app_tweet_reply',{'tweet': tweet.id})) }}
+        </div>
+    </div>
+
+</div>

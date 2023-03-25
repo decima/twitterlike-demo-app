@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ tweet.content[:50] ~ '...' }}{% endblock %}
+
+
+
+{% block body %}
+    {% if tweet.parent %}
+        <a href="{{ path('app_tweet',{'tweet':tweet.parent.id}) }}">...</a>
+    {% endif %}
+    {% include 'components/cardWithComments.html.twig' with {tweet: tweet} %}
+
+{% endblock %}
+

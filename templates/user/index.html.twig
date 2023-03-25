@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% set page= app.request.query.get('page',1) %}
+{% set size= app.request.query.get('size',10) %}
+{% set pageLimit = user.tweets.count/size|round(0,'ceil') %}
+{% block title %}{{ user.username }}{% endblock %}
+
+{% block body %}
+
+    <ul class="pagination">
+        {% if(page>1) %}
+            <li class="page-item"><a class="page-link" href="?page={{ page-1 }}">Recent</a></li>
+        {% endif %}
+    </ul>
+    {% include 'components/feed.html.twig' with {tweets: user.tweets|sort((a,b)=>b.createdAt <=>a.createdAt)|slice((page-1)*size , size) } %}
+
+
+    <ul class="pagination">
+
+        {% if(page<=pageLimit) %}
+            <li class="page-item"><a class="page-link" href="?page={{ page+1 }}">Older</a></li>
+        {% endif %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,6 @@
+<div class="mt-4">
+{% for tweet in tweets %}
+    {% include 'components/card.html.twig' with {tweet: tweet} %}
+
+{% endfor %}
+</div>

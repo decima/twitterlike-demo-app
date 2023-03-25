@@ -1,0 +1,4 @@
+{% include 'components/card.html.twig' with{tweet:tweet} %}
+<div class="pl-5 ml-5 mb-2 border-left d-block" style="padding-left: 10px; border-left: 2px solid #E0E0E0;">
+    {% include 'components/feedWithComments.html.twig' with {tweets: tweet.children} %}
+</div>
